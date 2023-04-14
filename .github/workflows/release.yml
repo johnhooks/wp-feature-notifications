@@ -19,8 +19,6 @@ jobs:
 
             - name: Setup Node.js
               uses: ./.github/actions/node
-              with:
-                  node-version: '16'
 
             - name: Build package
               shell: bash
@@ -28,15 +26,14 @@ jobs:
 
             - name: Create artifacts
               shell: bash
-              run: rsync -rc --exclude-from="${GITHUB_WORKSPACE}/.distignore" "${GITHUB_WORKSPACE}/" "${PLUGIN_SLUG}/" --delete --delete-excluded && zip -r "${GITHUB_WORKSPACE}/${PLUGIN_SLUG}.zip" "${PLUGIN_SLUG}"
+              run: rsync -rc --exclude-from=.distignore ./ $PLUGIN_SLUG/ --delete --delete-excluded && zip -r $PLUGIN_SLUG.zip $PLUGIN_SLUG
 
             - name: Release
               uses: softprops/action-gh-release@v1
               with:
                   name: github.ref
-                  files: ${{ PLUGIN_SLUG }}.zip
+                  files: ${{ env.PLUGIN_SLUG }}.zip
                   fail_on_unmatched_files: true
-                  target_commitish: trunk
                   generate_release_notes: true
                   draft: true
 
