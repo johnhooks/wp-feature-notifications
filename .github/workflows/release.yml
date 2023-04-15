@@ -8,6 +8,9 @@ on:
 env:
     PLUGIN_SLUG: wp-feature-notifications
 
+permissions:
+    contents: write
+
 jobs:
     release:
         name: Create Release
