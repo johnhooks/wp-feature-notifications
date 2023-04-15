@@ -34,6 +34,7 @@ jobs:
                   name: github.ref
                   files: ${{ env.PLUGIN_SLUG }}.zip
                   fail_on_unmatched_files: true
+                  target_commitish: release
                   generate_release_notes: true
                   draft: true
 
