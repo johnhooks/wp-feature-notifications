@@ -1,5 +1,5 @@
 /* JEST unit testing */
-
+import { nowInSeconds } from '../../src/scripts/utils';
 import { purify } from '../../src/scripts/utils/sanitization';
 
 describe( 'purify works', () => {
@@ -10,8 +10,8 @@ describe( 'purify works', () => {
 	} );
 } );
 
-describe( 'boilerplate test', () => {
-	it( 'it can make simple additions', () => {
-		expect( 1 + 2 ).toBe( 3 );
+describe( 'time functions are working', () => {
+	it( 'do not break html', () => {
+		expect( nowInSeconds() ).toBeGreaterThan( 123 );
 	} );
 } );
